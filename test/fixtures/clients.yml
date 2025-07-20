@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  birth_date: 2025-07-20
+  plan: one
+  package: one
+
+two:
+  name: MyString
+  birth_date: 2025-07-20
+  plan: two
+  package: two

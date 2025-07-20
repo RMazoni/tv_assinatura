@@ -65,6 +65,6 @@ class PackagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def package_params
-      params.expect(package: [ :name, :price, :plan_id ])
+      params.expect(package: [ :name, :price, :plan_id, additional_ids: [] ])
     end
 end

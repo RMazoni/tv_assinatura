@@ -23,7 +23,12 @@
 
   <div>
     <%= form.label :plan_id, style: "display: block" %>
-    <%= form.text_field :plan_id %>
+    <%= form.collection_select :plan_id, Plan.order(:name), :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :additional_ids, style: "display: block" %>
+    <%= form.collection_checkboxes :additional_ids, Additional.order(:name), :id, :name %>
   </div>
 
   <div>

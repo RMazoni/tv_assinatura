@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_20_183009) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_20_184716) do
   create_table "additionals", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -31,8 +31,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_20_183009) do
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.date "birth_date"
-    t.integer "plan_id", null: false
-    t.integer "package_id", null: false
+    t.integer "plan_id"
+    t.integer "package_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["package_id"], name: "index_clients_on_package_id"

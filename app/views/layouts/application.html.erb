@@ -23,6 +23,18 @@
   </head>
 
   <body>
+    <nav class="navbar">
+      <div class="navbar_links">
+        <%= link_to 'Clients', clients_path %>
+        <%= link_to 'Packages', packages_path %>
+        <%= link_to 'Plans', plans_path %>
+        <%= link_to 'Additionals', additionals_path %>
+      </div>
+    </nav>
+
+    <main>
     <%= yield %>
+    </main>
+
   </body>
 </html>

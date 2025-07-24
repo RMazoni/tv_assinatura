@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "price_calculator" do %>
+  <%= form.label :price, "Preço Calculado", style: "display: block" %>
+  <%= form.number_field :price, value: calculated_price, step: 0.01, readonly: true %>
+
+  <%= form.label :custom_price, "Preço Personalizado (opcional)", style: "display: block" %>
+  <%= form.number_field :custom_price, step: 0.01 %>
+<% end %>

@@ -2,9 +2,21 @@
 
 <%= render @client %>
 
+<strong>Birth Date:</strong>
+<%= @client.birth_date%>
+
 <div>
   <%= link_to "Edit this client", edit_client_path(@client) %> |
   <%= link_to "Back to clients", clients_path %>
 
   <%= button_to "Destroy this client", @client, method: :delete %>
+</div>
+
+  <%= link_to "Add Subscription", new_client_subscription_path(@client) %>
+
+<div>
+  <h2>Subscription</h2>
+  <% if @client.subscription.present? %>
+    <li><%= link_to "Subscription", client_subscription_path(@client, @client.subscription) %></li>
+  <% end %>
 </div>

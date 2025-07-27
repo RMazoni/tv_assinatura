@@ -7,6 +7,7 @@ class Client < ApplicationRecord
 
   belongs_to :plan, optional: true
   belongs_to :package, optional: true
+  has_one :subscription, dependent: :destroy
 
 
   private

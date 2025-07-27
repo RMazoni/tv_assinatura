@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_20_184716) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_26_134617) do
   create_table "additionals", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -45,6 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_20_184716) do
     t.integer "plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "custom_price"
     t.index ["plan_id"], name: "index_packages_on_plan_id"
   end
 
@@ -55,7 +56,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_20_184716) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.integer "package_id"
+    t.integer "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_subscriptions_on_client_id"
+    t.index ["package_id"], name: "index_subscriptions_on_package_id"
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+  end
+
   add_foreign_key "clients", "packages"
   add_foreign_key "clients", "plans"
   add_foreign_key "packages", "plans"
+  add_foreign_key "subscriptions", "clients"
+  add_foreign_key "subscriptions", "packages"
+  add_foreign_key "subscriptions", "plans"
 end

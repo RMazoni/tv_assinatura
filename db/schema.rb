@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_26_134617) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_03_171838) do
   create_table "additionals", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -26,6 +26,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_134617) do
   create_table "additionals_packages", id: false, force: :cascade do |t|
     t.integer "package_id", null: false
     t.integer "additional_id", null: false
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.integer "subscription_id", null: false
+    t.string "bill_type"
+    t.integer "additional_id"
+    t.date "due_date"
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["additional_id"], name: "index_bills_on_additional_id"
+    t.index ["subscription_id"], name: "index_bills_on_subscription_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -45,7 +57,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_134617) do
     t.integer "plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "custom_price"
     t.index ["plan_id"], name: "index_packages_on_plan_id"
   end
 
@@ -67,6 +78,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_134617) do
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
   end
 
+  add_foreign_key "bills", "additionals"
+  add_foreign_key "bills", "subscriptions"
   add_foreign_key "clients", "packages"
   add_foreign_key "clients", "plans"
   add_foreign_key "packages", "plans"

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subscription: one
+  bill_type: MyString
+  additional: one
+  due_date: 2025-08-03
+  amount: 9.99
+
+two:
+  subscription: two
+  bill_type: MyString
+  additional: two
+  due_date: 2025-08-03
+  amount: 9.99

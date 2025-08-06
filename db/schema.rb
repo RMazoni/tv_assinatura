@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_03_171838) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_06_003506) do
   create_table "additionals", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -25,6 +25,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_03_171838) do
 
   create_table "additionals_packages", id: false, force: :cascade do |t|
     t.integer "package_id", null: false
+    t.integer "additional_id", null: false
+  end
+
+  create_table "additionals_subscriptions", id: false, force: :cascade do |t|
+    t.integer "subscription_id", null: false
     t.integer "additional_id", null: false
   end
 

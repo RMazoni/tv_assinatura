@@ -5,4 +5,6 @@ class Subscription < ApplicationRecord
   belongs_to :client
   belongs_to :package
   belongs_to :plan
+  has_and_belongs_to_many :additionals
+  has_many :bills, dependent: :destroy
 end

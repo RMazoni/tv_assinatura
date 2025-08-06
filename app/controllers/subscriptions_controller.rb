@@ -27,6 +27,8 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
+        create_bills_for_subscription(@subscription)
+
         format.html { redirect_to @subscription, notice: "Subscription was successfully created." }
         format.json { render :show, status: :created, location: @subscription }
       else
@@ -69,4 +71,38 @@ class SubscriptionsController < ApplicationController
     def subscription_params
       params.expect(subscription: [ :client_id, :package_id, :plan_id ])
     end
+
+    # Create 12 bills for each item of subscription (plan, package and additionals)
+    def create_bills_for_subscription(subscription)
+      12.times do |month_offset|
+        due_date = Date.current.next_month(month_offset + 1)
+
+        if subscription.plan.present?
+          Bill.create!(
+            subscription: subscription,
+            bill_type: "plan",
+            amount: subscription.plan.price,
+            due_date: due_date
+          )
+        elsif subscription.package.present?
+          Bill.create!(
+            subscription: subscription,
+            bill_type: "package",
+            amount: subscription.plan.price,
+            due_date: due_date
+          )
+        end
+
+        subscription.additionals.each do |additional|
+          Bill.create!(
+            subscription: subscription,
+            bill_type: "additional",
+            additional: additional,
+            amount: additional.price,
+            due_date: due_date
+          )
+        end
+      end
+    end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_06_003506) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_15_200141) do
   create_table "additionals", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -48,12 +48,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_003506) do
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.date "birth_date"
-    t.integer "plan_id"
-    t.integer "package_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["package_id"], name: "index_clients_on_package_id"
-    t.index ["plan_id"], name: "index_clients_on_plan_id"
   end
 
   create_table "packages", force: :cascade do |t|
@@ -85,8 +81,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_003506) do
 
   add_foreign_key "bills", "additionals"
   add_foreign_key "bills", "subscriptions"
-  add_foreign_key "clients", "packages"
-  add_foreign_key "clients", "plans"
   add_foreign_key "packages", "plans"
   add_foreign_key "subscriptions", "clients"
   add_foreign_key "subscriptions", "packages"

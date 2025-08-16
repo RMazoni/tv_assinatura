@@ -4,9 +4,6 @@ class Client < ApplicationRecord
   validate :must_be_at_least_18_years_old
   validate :can_have_plan_or_package_not_both
 
-
-  belongs_to :plan, optional: true
-  belongs_to :package, optional: true
   has_one :subscription, dependent: :destroy
 
 

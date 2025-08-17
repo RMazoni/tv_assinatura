@@ -53,10 +53,11 @@ class SubscriptionsController < ApplicationController
 
   # DELETE /subscriptions/1 or /subscriptions/1.json
   def destroy
+    @client = @subscription.client
     @subscription.destroy!
 
     respond_to do |format|
-      format.html { redirect_to subscriptions_path, status: :see_other, notice: "Subscription was successfully destroyed." }
+      format.html { redirect_to client_path(@client), status: :see_other, notice: "Subscription was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -69,7 +70,7 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.expect(subscription: [ :client_id, :package_id, :plan_id ])
+      params.expect(subscription: [ :client_id, :package_id, :plan_id, :additionals_id ])
     end
 
     # Create 12 bills for each item of subscription (plan, package and additionals)
@@ -88,7 +89,7 @@ class SubscriptionsController < ApplicationController
           Bill.create!(
             subscription: subscription,
             bill_type: "package",
-            amount: subscription.plan.price,
+            amount: subscription.package.price,
             due_date: due_date
           )
         end

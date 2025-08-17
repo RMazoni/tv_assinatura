@@ -13,6 +13,12 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @client = Client.find(params[:client_id])
+
+    if @client.subscription.present?
+      redirect_to client_path(@client), notice: "This client already have an active subscription."
+      return
+    end
+
     @subscription = @client.build_subscription
   end
 

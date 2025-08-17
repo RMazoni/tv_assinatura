@@ -4,6 +4,7 @@ class Package < ApplicationRecord
   validates :additionals, length: { minimum: 1, message: "Must have at least one additional" }
 
   belongs_to :plan
+  has_many :subscriptions, dependent: :nullify
   has_and_belongs_to_many :additionals
 
   after_save :package_price_calculator # needs to be after_save bacause of HABTM association

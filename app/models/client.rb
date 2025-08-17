@@ -15,5 +15,4 @@ class Client < ApplicationRecord
       errors.add(:birth_date, "Client must be at least 18 years old.")
     end
   end
-
 end

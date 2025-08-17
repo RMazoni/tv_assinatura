@@ -21,5 +21,4 @@ class Subscription < ApplicationRecord
       errors.add(:base, "Must have either a plan or a package.")
     end
   end
-
 end

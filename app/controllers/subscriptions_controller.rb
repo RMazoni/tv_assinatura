@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
     @client = Client.find(params[:client_id])
 
     if @client.subscription.present?
-      redirect_to client_path(@client), notice: "This client already have an active subscription."
+      redirect_to client_path(@client), notice: "This client already has an active subscription."
       return
     end
 
@@ -111,5 +111,4 @@ class SubscriptionsController < ApplicationController
         end
       end
     end
-
 end

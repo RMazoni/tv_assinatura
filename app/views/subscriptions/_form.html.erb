@@ -29,6 +29,11 @@
   </div>
 
   <div>
+    <%= form.label :additional_ids, style: "display: block" %>
+    <%= form.collection_check_boxes :additional_ids, Additional.order(:name), :id, :name %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

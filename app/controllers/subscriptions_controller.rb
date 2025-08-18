@@ -76,7 +76,7 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.expect(subscription: [ :client_id, :package_id, :plan_id, :additionals_id ])
+      params.expect(subscription: [ :client_id, :package_id, :plan_id, additional_ids: [] ])
     end
 
     # Create 12 bills for each item of subscription (plan, package and additionals)

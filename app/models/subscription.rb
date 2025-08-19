@@ -1,5 +1,6 @@
 class Subscription < ApplicationRecord
   validate :can_have_plan_or_package_not_both
+  validate :can_have_package_or_additionals_not_both
   validate :must_have_plan_or_package
 
   belongs_to :client
@@ -12,7 +13,13 @@ class Subscription < ApplicationRecord
 
   def can_have_plan_or_package_not_both
     if plan.present? && package.present?
-      errors.add(:base, "Only plan or package allowed.")
+      errors.add(:base, "Client can not have plan and package together.")
+    end
+  end
+
+  def can_have_package_or_additionals_not_both
+    if package.present? && additionals.present?
+      errors.add(:base, "Client can not have package and additionals together.")
     end
   end
 

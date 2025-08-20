@@ -9,6 +9,8 @@ class Subscription < ApplicationRecord
   has_and_belongs_to_many :additionals
   has_many :bills, dependent: :destroy
 
+  after_save :calculate_price
+
   private
 
   def can_have_plan_or_package_not_both
@@ -27,5 +29,13 @@ class Subscription < ApplicationRecord
     unless plan.present? || package.present?
       errors.add(:base, "Must have either a plan or a package.")
     end
+  end
+
+  def calculate_price
+    total = 0
+    total += plan.price if plan.present?
+    total += package.price if package.present?
+    total += additionals.sum(:price)
+    update_column(:price, total)
   end
 end

@@ -2,6 +2,11 @@
 
 <%= render @subscription %>
 
+<p>
+  <strong>Price:</strong>
+  <%= @subscription.price %>
+</p>
+
 <div>
   <%= link_to "Edit this subscription", edit_subscription_path(@subscription) %> |
   <%= link_to "Back to client", client_path(@subscription.client) %>

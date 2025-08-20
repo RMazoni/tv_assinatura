@@ -13,9 +13,9 @@
 
   <div>
     <%= form.label :client_name, style: "display: block" %>
-    <%= text_field_tag :client_name, @client.name, readonly: true %>
+    <%= text_field_tag :client_name, subscription.client.name, readonly: true %>
 
-    <%= form.hidden_field :client_id, value: @client.id %>
+    <%= form.hidden_field :client_id, value: subscription.client.id %>
   </div>
 
   <div>

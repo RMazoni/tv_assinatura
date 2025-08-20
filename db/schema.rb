@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_16_224344) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_19_234549) do
   create_table "additionals", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -74,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_224344) do
     t.integer "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "price"
     t.index ["client_id"], name: "index_subscriptions_on_client_id"
     t.index ["package_id"], name: "index_subscriptions_on_package_id"
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
